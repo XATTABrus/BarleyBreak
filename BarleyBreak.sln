@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticeEncapsulation", "PracticeEncapsulation\PracticeEncapsulation.csproj", "{41A5DC0B-D4DB-4DD9-A8AC-07F4636649FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarleyBreak.Tests", "BarleyBreak.Tests\BarleyBreak.Tests.csproj", "{1C5B4FBF-1529-4A0B-B050-B72C43F259E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarleyBreak.Library", "BarleyBreak.Library\BarleyBreak.Library.csproj", "{7DE4288B-A549-4DD3-A9C9-A256E83302FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{41A5DC0B-D4DB-4DD9-A8AC-07F4636649FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41A5DC0B-D4DB-4DD9-A8AC-07F4636649FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41A5DC0B-D4DB-4DD9-A8AC-07F4636649FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41A5DC0B-D4DB-4DD9-A8AC-07F4636649FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5B4FBF-1529-4A0B-B050-B72C43F259E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5B4FBF-1529-4A0B-B050-B72C43F259E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5B4FBF-1529-4A0B-B050-B72C43F259E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5B4FBF-1529-4A0B-B050-B72C43F259E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE4288B-A549-4DD3-A9C9-A256E83302FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE4288B-A549-4DD3-A9C9-A256E83302FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE4288B-A549-4DD3-A9C9-A256E83302FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE4288B-A549-4DD3-A9C9-A256E83302FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
