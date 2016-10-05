@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BarleyBreak.Library
@@ -68,14 +69,22 @@ namespace BarleyBreak.Library
 
         protected bool NeighboringCellIsZero(int value)
         {
-            var position = (CellPosition)HtKeyValueCell[value];
-            var zeroPosition = (CellPosition)HtKeyValueCell[0];
+            var position = GetLocation(value);
 
-            var locationValueSum = position.X + position.Y;
-            var locationZeroSum = zeroPosition.X + zeroPosition.Y;
-            var different = locationValueSum - locationZeroSum;
+            // Делаем предположение о местонахождение соседних ячеек
+            var neighboringCells = new List<CellPosition>
+            {
+                // Верхняя соседняя ячейка
+                new CellPosition(position.X - 1, position.Y),
+                // Нижняя соседняя ячейка
+                new CellPosition(position.X + 1, position.Y),
+                // Правая соседняя ячейка
+                new CellPosition(position.X, position.Y + 1),
+                // Левая соседняя ячейка
+                new CellPosition(position.X, position.Y - 1)
+            };
 
-            return different == -1 || different == 1;
+            return neighboringCells.Contains(GetLocation(0));
         }
     }
 }

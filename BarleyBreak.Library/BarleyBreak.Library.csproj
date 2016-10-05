@@ -43,6 +43,8 @@
     <Compile Include="AbstractGame.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="CellPosition.cs" />
+    <Compile Include="GameDecorator.cs" />
+    <Compile Include="GameWithHistory.cs" />
     <Compile Include="IGame.cs" />
     <Compile Include="ImmutableGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
