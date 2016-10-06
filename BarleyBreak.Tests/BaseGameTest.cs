@@ -78,7 +78,12 @@ namespace BarleyBreak.Tests
             var shift2 = shift1.Shift(5);
             var shift3 = shift2.Shift(4);
             var shift4 = shift3.Shift(1);
-            shift4.Shift(1);
+            var shift5 = shift4.Shift(1);
+
+            var locationZero = shift5.GetLocation(0);
+            
+            Assert.AreEqual(1, locationZero.X);
+            Assert.AreEqual(0, locationZero.Y);
         }
 
         /// <summary>
