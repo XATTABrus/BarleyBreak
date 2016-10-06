@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,8 +6,9 @@ namespace BarleyBreak.Library
 {
     public abstract class AbstractGame : IGame
     {
-        protected Hashtable HtKeyPositonCell; // Таблица, ключ которой позиция ячейки
-        protected Hashtable HtKeyValueCell; // Таблица, ключ которой значение ячейки
+        protected Dictionary<int, int> DictionaryKeyPositonCell; // Таблица, ключ которой позиция ячейки
+        protected Dictionary<int, CellPosition> DictionaryKeyValueCell; // Таблица, ключ которой значение ячейки
+
 
         protected AbstractGame() { }
 
@@ -18,25 +18,25 @@ namespace BarleyBreak.Library
 
             var sizeSide = (int)Math.Sqrt(args.Length);
 
-            HtKeyPositonCell = new Hashtable();
-            HtKeyValueCell = new Hashtable();
+            DictionaryKeyPositonCell = new Dictionary<int, int>();
+            DictionaryKeyValueCell = new Dictionary<int, CellPosition>();
 
             var counter = 0;
             // Заполняем хэш-таблицы
             for (var i = 0; i < sizeSide; i++)
                 for (var j = 0; j < sizeSide; j++)
                 {
-                    HtKeyValueCell.Add(args[counter], new CellPosition(i, j));
-                    HtKeyPositonCell.Add(new CellPosition(i, j).GetHashCode(), args[counter]);
+                    DictionaryKeyValueCell.Add(args[counter], new CellPosition(i, j));
+                    DictionaryKeyPositonCell.Add(new CellPosition(i, j).GetHashCode(), args[counter]);
                     counter++;
                 }
         }
 
-        public virtual int this[int x, int y] => (int)HtKeyPositonCell[new CellPosition(x, y).GetHashCode()];
+        public virtual int this[int x, int y] => DictionaryKeyPositonCell[new CellPosition(x, y).GetHashCode()];
 
         public virtual CellPosition GetLocation(int value)
         {
-            return (CellPosition)HtKeyValueCell[value];
+            return DictionaryKeyValueCell[value];
         }
 
         public abstract IGame Shift(int value);
@@ -56,15 +56,15 @@ namespace BarleyBreak.Library
 
         protected void SwapCellsWithZero(int value)
         {
-            var position = (CellPosition)HtKeyValueCell[value];
-            var zeroPosition = (CellPosition)HtKeyValueCell[0];
+            var position = DictionaryKeyValueCell[value];
+            var zeroPosition = DictionaryKeyValueCell[0];
 
             // Меняем местами значения ячеек
-            HtKeyValueCell[value] = zeroPosition;
-            HtKeyValueCell[0] = position;
+            DictionaryKeyValueCell[value] = zeroPosition;
+            DictionaryKeyValueCell[0] = position;
 
-            HtKeyPositonCell[zeroPosition.GetHashCode()] = value;
-            HtKeyPositonCell[position.GetHashCode()] = 0;
+            DictionaryKeyPositonCell[zeroPosition.GetHashCode()] = value;
+            DictionaryKeyPositonCell[position.GetHashCode()] = 0;
         }
 
         protected bool NeighboringCellIsZero(int value)

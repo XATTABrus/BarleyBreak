@@ -8,10 +8,10 @@ namespace BarleyBreak.Library
     {
         public ImmutableGame(params int[] args) : base (args) { }
 
-        private ImmutableGame(Hashtable htKeyPositonCell, Hashtable htKeyValueCell)
+        private ImmutableGame(Dictionary<int, int> dictionaryKeyPositonCell, Dictionary<int, CellPosition> dictionaryKeyValueCell)
         {
-            HtKeyPositonCell = new Hashtable(htKeyPositonCell);
-            HtKeyValueCell = new Hashtable(htKeyValueCell);
+            DictionaryKeyPositonCell = new Dictionary<int, int>(dictionaryKeyPositonCell);
+            DictionaryKeyValueCell = new Dictionary<int, CellPosition>(dictionaryKeyValueCell);
         }
 
         public override IGame Shift(int value)
@@ -19,7 +19,7 @@ namespace BarleyBreak.Library
             if (!NeighboringCellIsZero(value))
                 throw new InvalidOperationException("Все соседние ячейки не нулевые!");
 
-            var gameNew = new ImmutableGame(HtKeyPositonCell, HtKeyValueCell);
+            var gameNew = new ImmutableGame(DictionaryKeyPositonCell, DictionaryKeyValueCell);
             gameNew.SwapCellsWithZero(value);
             return gameNew;
         }
