@@ -9,12 +9,12 @@ namespace BarleyBreak.Tests
     {
         protected abstract IGame GetGame(params int[] args);
 
-        private IGame _game;
+        private IGame _myGame;
 
         [TestInitialize]
-        public void TestInitialize()
+        public void GameInitilize()
         {
-            _game = GetGame(1, 2, 3, 4, 6, 5, 7, 8, 0);
+            _myGame = GetGame(1, 2, 3, 4, 5, 6, 7, 8, 0);
         }
 
         /// <summary>
@@ -34,21 +34,21 @@ namespace BarleyBreak.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateGameIsFailTest()
         {
-            var game = GetGame(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+            GetGame(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         }
-        
+
         /// <summary>
         /// Проверка работы индексатора
         /// </summary>
         [TestMethod]
         public void IndexaterTest()
         {
-            var result1 = _game[1, 1];
-            var result2 = _game[1, 0];
-            var result3 = _game[0, 0];
-            var result4 = _game.Shift(8)[2, 2];
+            var result1 = _myGame[1, 1];
+            var result2 = _myGame[1, 0];
+            var result3 = _myGame[0, 0];
+            var result4 = _myGame.Shift(8)[2, 2];
 
-            Assert.AreEqual(6, result1);
+            Assert.AreEqual(5, result1);
             Assert.AreEqual(4, result2);
             Assert.AreEqual(1, result3);
             Assert.AreEqual(8, result4);
@@ -56,14 +56,14 @@ namespace BarleyBreak.Tests
         }
 
         /// <summary>
-        /// Проверка работы метода GetLocation
+        /// Проверка работы метода GetLocation после перемещения элементов по полю
         /// </summary>
         [TestMethod]
         public void CorrectnessGetLocationAfterGameTest()
         {
-            var result1 = _game.GetLocation(5);
-            var result2 = _game.GetLocation(0);
-            var result3 = _game.Shift(8).GetLocation(0);
+            var result1 = _myGame.GetLocation(5);
+            var result2 = _myGame.GetLocation(0);
+            var result3 = _myGame.Shift(8).GetLocation(0);
 
             Assert.AreEqual(result1, new CellPosition(1, 1));
             Assert.AreEqual(result2, new CellPosition(2, 2));
@@ -76,14 +76,14 @@ namespace BarleyBreak.Tests
         [TestMethod]
         public void ShiftIsSuccessTest()
         {
-            var shift1 = _game.Shift(8);
+            var shift1 = _myGame.Shift(8);
             var shift2 = shift1.Shift(5);
             var shift3 = shift2.Shift(4);
             var shift4 = shift3.Shift(1);
             var shift5 = shift4.Shift(1);
 
             var locationZero = shift5.GetLocation(0);
-            
+
             Assert.AreEqual(1, locationZero.X);
             Assert.AreEqual(0, locationZero.Y);
         }
@@ -95,7 +95,7 @@ namespace BarleyBreak.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ShiftIsFailTest()
         {
-            _game.Shift(3);
+            _myGame.Shift(3);
         }
     }
 }
